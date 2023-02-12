@@ -19,6 +19,8 @@
 		A018D7F12999399900AC12FB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A018D7F02999399900AC12FB /* FirebaseFirestore */; };
 		A018D7F32999399900AC12FB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A018D7F22999399900AC12FB /* FirebaseFirestoreSwift */; };
 		A018D7F52999399900AC12FB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A018D7F42999399900AC12FB /* FirebaseStorage */; };
+		A018D7F92999665D00AC12FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D7F82999665D00AC12FB /* User.swift */; };
+		A018D7FB29996CD500AC12FB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D7FA29996CD500AC12FB /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		A018D7DC299925B500AC12FB /* SocialMediaApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SocialMediaApp.xcdatamodel; sourceTree = "<group>"; };
 		A018D7E3299926BC00AC12FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A018D7ED299927E300AC12FB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A018D7F82999665D00AC12FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A018D7FA29996CD500AC12FB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				A018D7ED299927E300AC12FB /* LoginView.swift */,
+				A018D7FA29996CD500AC12FB /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -100,6 +105,7 @@
 		A018D7E9299927C000AC12FB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A018D7F82999665D00AC12FB /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,8 +199,10 @@
 			files = (
 				A018D7DA299925B500AC12FB /* Persistence.swift in Sources */,
 				A018D7D3299925B400AC12FB /* ContentView.swift in Sources */,
+				A018D7F92999665D00AC12FB /* User.swift in Sources */,
 				A018D7D1299925B400AC12FB /* SocialMediaAppApp.swift in Sources */,
 				A018D7EE299927E300AC12FB /* LoginView.swift in Sources */,
+				A018D7FB29996CD500AC12FB /* LoadingView.swift in Sources */,
 				A018D7DD299925B500AC12FB /* SocialMediaApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

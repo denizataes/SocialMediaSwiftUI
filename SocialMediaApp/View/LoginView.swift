@@ -21,6 +21,13 @@ struct LoginView: View {
     @State var createAccount: Bool = false
     @State var showError: Bool = false
     @State var errorMessage: String = ""
+    @State var isLoading: Bool = false
+    //MARK: User Defaults
+    @AppStorage("log_status") var logStatus: Bool = false
+    @AppStorage("user_profile_url") var profileURL: URL?
+    @AppStorage("user_name") var userNameStored: String = ""
+    @AppStorage("user_UID") var userUID: String = ""
+    
     
     var body: some View {
         VStack(spacing: 10){
@@ -80,7 +87,9 @@ struct LoginView: View {
         }
         .vAlign(.top)
         .padding(15)
-        
+        .overlay(content: {
+            LoadingView(show: $isLoading)
+        })
         //MARK: Register View VIA Sheets
         .fullScreenCover(isPresented: $createAccount) {
             RegisterView()
@@ -93,11 +102,14 @@ struct LoginView: View {
     }
     
     func loginUser(){
+        isLoading = true
+        closeKeyboard()
         Task{
             do{
                 // With the help of Swift Concurrency Auth can be done with Single line
                 try await Auth.auth().signIn(withEmail: emailID, password: password)
                 print("User Found")
+                try await fetchUser()
                 
             }catch{
                 await setError(error)
@@ -111,11 +123,30 @@ struct LoginView: View {
                 // With the help of Swift Concurrency Auth can be done with Single line
                 try await Auth.auth().sendPasswordReset(withEmail: emailID)
                 print("Link Sent")
+       
                 
             }catch{
                 await setError(error)
+                
             }
         }
+    }
+    
+    // MARK: If user if found then fetching User Data From Firestore
+    
+    func fetchUser() async throws{
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
+        //MARK: UI Updating must be run on main thread
+        
+        await MainActor.run(body: {
+            // Setting UserDefaults data and Changing app's Auth Status
+            userUID = userID
+            userNameStored = user.username
+            profileURL = user.userProfileURL
+            logStatus = true
+            
+        })
     }
 
     // MARK: Displaying Error VIA Alert
@@ -124,6 +155,7 @@ struct LoginView: View {
         await MainActor.run(body: {
             errorMessage = error.localizedDescription
             showError.toggle()
+            isLoading = false
         })
     }
     
@@ -145,6 +177,14 @@ struct RegisterView: View{
     @State var photoItem: PhotosPickerItem?
     @State var showError: Bool = false
     @State var errorMessage: String = ""
+    @State var isLoading: Bool = false
+    
+    //MARK: UserDefaults
+    @AppStorage("log_status") var logStatus: Bool = false
+    @AppStorage("user_profile_url") var profileURL: URL?
+    @AppStorage("user_name") var userNameStored: String = ""
+    @AppStorage("user_UID") var userUID: String = ""
+    
     var body: some View{
         VStack(spacing: 10){
             Text("Lets Register\nAccount")
@@ -184,6 +224,9 @@ struct RegisterView: View{
         }
         .vAlign(.top)
         .padding(15)
+        .overlay(content: {
+            LoadingView(show: $isLoading)
+        })
         .photosPicker(isPresented: $showImagePicker, selection: $photoItem)
         .onChange(of: photoItem) { newValue in
             // MARK: Extracting UIImage from PhotoItem
@@ -203,7 +246,6 @@ struct RegisterView: View{
         }
         // MARK: Displaying Alert
         .alert(errorMessage, isPresented: $showError) {
-            
         }
         
     }
@@ -256,23 +298,23 @@ struct RegisterView: View{
                 .textContentType(.emailAddress)
                 .border(1, .gray.opacity(0.5))
 
-            
-            Button {
-                registerUser()
-            } label: {
-                // MARK: Login Button
+            Button(action: registerUser) {
+                // MARK: Register Button
                 
                 Text("Sign up")
                     .foregroundColor(.white)
                     .hAlign(.center)
                     .fillView(.black)
             }
+            .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || password == "" || userProfilePicData == nil)
             .padding(.top, 10)
 
         }
     }
     
     func registerUser(){
+        isLoading = true
+        closeKeyboard()
         Task{
             do{
                 // Step 1: Creating Firebase accunt
@@ -289,7 +331,24 @@ struct RegisterView: View{
                 let downloadURL = try await storageRef.downloadURL()
                 
                 //Step 4: Creating a User Firestore Object.
+                let user = User(username: userName, userBio: userBio, userBioLink: userBioLink, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
+                
+                //Step 5: Saving User Doc into Firestore Database
+                
+                let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion: { error in
+                    if error == nil{
+                        // MARK: Print saved succesfully
+                        print("Saved succesfully")
+                        userNameStored = userName
+                        self.userUID = userUID
+                        profileURL = downloadURL
+                        logStatus = true
+                    }
+                })
+                
             }catch{
+                //  MARK: Deleting Created Account In Case of Failure
+                try await Auth.auth().currentUser?.delete()
                 await setError(error)
             }
         }
@@ -302,6 +361,7 @@ struct RegisterView: View{
         await MainActor.run(body: {
             errorMessage = error.localizedDescription
             showError.toggle()
+            isLoading = false
         })
     }
 }
@@ -314,6 +374,19 @@ struct LoginView_Previews: PreviewProvider {
 //MARK: View Extension for UI Building
 
 extension View{
+    
+    // Closing All Active Keyboards
+    func closeKeyboard(){
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    //MARK: Disabling with Opacity
+    func disableWithOpacity(_ condition: Bool) -> some View{
+        self
+            .disabled(condition)
+            .opacity(condition ? 0.6 : 1)
+    }
+    
     func hAlign(_ alignment: Alignment) -> some View{
         self
             .frame(maxWidth: .infinity, alignment: alignment)
