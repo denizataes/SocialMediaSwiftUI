@@ -21,8 +21,6 @@ struct ContentView: View {
         else{
             LoginView()
         }
-        
-       
     }
 }
 

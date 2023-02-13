@@ -27,6 +27,9 @@
 		A018D806299AC36E00AC12FB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D805299AC36E00AC12FB /* ProfileView.swift */; };
 		A018D808299AC92A00AC12FB /* ReusableProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D807299AC92A00AC12FB /* ReusableProfileContent.swift */; };
 		A018D80C299ACA3E00AC12FB /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A018D80B299ACA3E00AC12FB /* SDWebImageSwiftUI */; };
+		A018D80E299ACDE100AC12FB /* CreateNewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D80D299ACDE100AC12FB /* CreateNewPost.swift */; };
+		A018D810299ACE0600AC12FB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D80F299ACE0600AC12FB /* Post.swift */; };
+		A018D814299ADAA600AC12FB /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D813299ADAA600AC12FB /* PostsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		A018D805299AC36E00AC12FB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A018D807299AC92A00AC12FB /* ReusableProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileContent.swift; sourceTree = "<group>"; };
 		A018D809299ACA0200AC12FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A018D80D299ACDE100AC12FB /* CreateNewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPost.swift; sourceTree = "<group>"; };
+		A018D80F299ACE0600AC12FB /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		A018D813299ADAA600AC12FB /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				A018D7F82999665D00AC12FB /* User.swift */,
+				A018D80F299ACE0600AC12FB /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +155,8 @@
 				A018D803299AC26A00AC12FB /* MainView.swift */,
 				A018D805299AC36E00AC12FB /* ProfileView.swift */,
 				A018D807299AC92A00AC12FB /* ReusableProfileContent.swift */,
+				A018D80D299ACDE100AC12FB /* CreateNewPost.swift */,
+				A018D813299ADAA600AC12FB /* PostsView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -246,8 +255,11 @@
 				A018D7D3299925B400AC12FB /* ContentView.swift in Sources */,
 				A018D7F92999665D00AC12FB /* User.swift in Sources */,
 				A018D804299AC26A00AC12FB /* MainView.swift in Sources */,
+				A018D80E299ACDE100AC12FB /* CreateNewPost.swift in Sources */,
+				A018D810299ACE0600AC12FB /* Post.swift in Sources */,
 				A018D7D1299925B400AC12FB /* SocialMediaAppApp.swift in Sources */,
 				A018D7EE299927E300AC12FB /* LoginView.swift in Sources */,
+				A018D814299ADAA600AC12FB /* PostsView.swift in Sources */,
 				A018D7FF299AC13C00AC12FB /* RegisterView.swift in Sources */,
 				A018D7FB29996CD500AC12FB /* LoadingView.swift in Sources */,
 				A018D7DD299925B500AC12FB /* SocialMediaApp.xcdatamodeld in Sources */,
