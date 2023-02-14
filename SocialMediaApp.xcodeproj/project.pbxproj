@@ -30,6 +30,8 @@
 		A018D80E299ACDE100AC12FB /* CreateNewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D80D299ACDE100AC12FB /* CreateNewPost.swift */; };
 		A018D810299ACE0600AC12FB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D80F299ACE0600AC12FB /* Post.swift */; };
 		A018D814299ADAA600AC12FB /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D813299ADAA600AC12FB /* PostsView.swift */; };
+		A018D817299C24B700AC12FB /* ReusablePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D816299C24B700AC12FB /* ReusablePostsView.swift */; };
+		A018D819299C296100AC12FB /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A018D818299C296100AC12FB /* PostCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		A018D80D299ACDE100AC12FB /* CreateNewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPost.swift; sourceTree = "<group>"; };
 		A018D80F299ACE0600AC12FB /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A018D813299ADAA600AC12FB /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
+		A018D816299C24B700AC12FB /* ReusablePostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePostsView.swift; sourceTree = "<group>"; };
+		A018D818299C296100AC12FB /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 				A018D807299AC92A00AC12FB /* ReusableProfileContent.swift */,
 				A018D80D299ACDE100AC12FB /* CreateNewPost.swift */,
 				A018D813299ADAA600AC12FB /* PostsView.swift */,
+				A018D816299C24B700AC12FB /* ReusablePostsView.swift */,
+				A018D818299C296100AC12FB /* PostCardView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -256,10 +262,12 @@
 				A018D7F92999665D00AC12FB /* User.swift in Sources */,
 				A018D804299AC26A00AC12FB /* MainView.swift in Sources */,
 				A018D80E299ACDE100AC12FB /* CreateNewPost.swift in Sources */,
+				A018D819299C296100AC12FB /* PostCardView.swift in Sources */,
 				A018D810299ACE0600AC12FB /* Post.swift in Sources */,
 				A018D7D1299925B400AC12FB /* SocialMediaAppApp.swift in Sources */,
 				A018D7EE299927E300AC12FB /* LoginView.swift in Sources */,
 				A018D814299ADAA600AC12FB /* PostsView.swift in Sources */,
+				A018D817299C24B700AC12FB /* ReusablePostsView.swift in Sources */,
 				A018D7FF299AC13C00AC12FB /* RegisterView.swift in Sources */,
 				A018D7FB29996CD500AC12FB /* LoadingView.swift in Sources */,
 				A018D7DD299925B500AC12FB /* SocialMediaApp.xcdatamodeld in Sources */,
