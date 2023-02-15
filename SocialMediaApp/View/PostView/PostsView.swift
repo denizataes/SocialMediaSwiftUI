@@ -29,6 +29,17 @@ struct PostsView: View {
                     .padding(15)
                     
                 }
+                .toolbar(content: {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink{
+                            SearchUserView()
+                        }label: {
+                            Image(systemName: "magnifyingglass")
+                                .tint(.black)
+                                .scaleEffect(0.9)
+                        }
+                    }
+                })
                 .navigationTitle("Post's")
         }
         .fullScreenCover(isPresented: $createNewPost) { CreateNewPost { post in
